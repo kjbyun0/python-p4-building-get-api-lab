@@ -1,8 +1,8 @@
-"""empty message
+"""Initial mgration
 
-Revision ID: 1a660c242acb
+Revision ID: ef2a7b8e9b64
 Revises: 
-Create Date: 2023-11-03 12:26:05.366996
+Create Date: 2024-02-21 21:37:36.950959
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1a660c242acb'
+revision = 'ef2a7b8e9b64'
 down_revision = None
 branch_labels = None
 depends_on = None

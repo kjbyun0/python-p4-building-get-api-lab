@@ -20,19 +20,30 @@ def index():
 
 @app.route('/bakeries')
 def bakeries():
-    return ''
+    bakeries = Bakery.query.all()
+    return make_response([bakery.to_dict() for bakery in bakeries], 200)
 
 @app.route('/bakeries/<int:id>')
 def bakery_by_id(id):
-    return ''
+    bakery = Bakery.query.filter_by(id=id).first()
+    if bakery:
+        return make_response(bakery.to_dict(), 200)
+    return make_response(f'Bakery {id} not found', 404)
 
 @app.route('/baked_goods/by_price')
 def baked_goods_by_price():
-    return ''
+    # bakedgoods = BakedGood.query.all()
+    # bakedgoods.sort(key=lambda bakedgood: bakedgood.price, reverse=True)
+    # return make_response([bakedgood.to_dict() for bakedgood in bakedgoods], 200)
+    bakedgoods = BakedGood.query.order_by(BakedGood.price.desc())
+    return make_response([bakedgood.to_dict() for bakedgood in bakedgoods])
 
 @app.route('/baked_goods/most_expensive')
 def most_expensive_baked_good():
-    return ''
+    bakedgood = BakedGood.query.order_by(BakedGood.price.desc()).first()
+    if bakedgood:
+        return make_response(bakedgood.to_dict(), 200)
+    return make_response("There aren't any bakedgoods.", 404)
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
